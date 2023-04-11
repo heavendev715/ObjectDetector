@@ -28,8 +28,8 @@ print(classes)
 
 #initialize camera
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2000)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2000)
 
 button_person = False
 
@@ -40,12 +40,16 @@ def click_button(event, x, y, flags, params):
 
 
 # create window
-cv2.namedWindow("Frame")
-cv2.setMouseCallback("Frame", click_button)
+cv2.namedWindow("Object Detector", cv2.WINDOW_NORMAL)
+cv2.setWindowProperty("Object Detector", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+cv2.setMouseCallback("Object Detector", click_button)
 
 while True:
     #getting frames
     ret, frame = cap.read()
+    
+     #zoom out
+    frame = cv2.resize(frame, (0, 0), fx=2.0, fy=2.0)
 
     #get active buttons list
     active_buttons = button.active_buttons_list()
