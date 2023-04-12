@@ -7,6 +7,12 @@ button = Buttons()
 button.add_button("person", 20, 20)
 button.add_button("cell phone", 20, 100)
 button.add_button("bottle", 20, 180)
+button.add_button("chair", 20, 260)
+button.add_button("fork", 20, 340)
+
+
+
+
 
 colors = button.colors
 
@@ -47,8 +53,8 @@ cv2.setMouseCallback("Object Detector", click_button)
 while True:
     #getting frames
     ret, frame = cap.read()
-    
-     #zoom out
+
+    #zoom out
     frame = cv2.resize(frame, (0, 0), fx=2.0, fy=2.0)
 
     #get active buttons list
@@ -65,13 +71,15 @@ while True:
         if class_name in active_buttons:
             cv2.putText(frame, class_name, (x, y-10), cv2.FONT_HERSHEY_PLAIN, 3, color, 2)
             cv2.rectangle(frame, (x,y), (x+w, y+h), color, 3)
+            # add text displaying the coordinates of the top-left corner of the bounding box
+            cv2.putText(frame, f"({x}, {y})", (x, y - 40), cv2.FONT_HERSHEY_PLAIN, 2, color, 2)
 
 
     #display buttons
     button.display_buttons(frame)
 
 
-    cv2.imshow("Frame", frame)
+    cv2.imshow("Object Detector", frame)
     key = cv2.waitKey(1)
     if key == 27:
         break
