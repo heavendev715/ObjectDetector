@@ -30,6 +30,9 @@ YOLOv4-tiny: https://github.com/AlexeyAB/darknet
 OpenCV: https://opencv.org/
 
 
+Author : Ayan Joshi 
+Contributor  : Rohit Ghosh
+
 
 
 
