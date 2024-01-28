@@ -3,6 +3,7 @@ from tkinter import messagebox
 import cv2
 from gui_buttons import Buttons
 from PIL import ImageTk, Image
+import pyttsx3
 
 # Initialize buttons
 button = Buttons()
@@ -14,13 +15,13 @@ button.add_button("spoon", 20, 340)
 colors = button.colors
 
 # opencv DNN
-net = cv2.dnn.readNet("dnn_model/yolov4-tiny.weights","dnn_model/yolov4-tiny.cfg")
+net = cv2.dnn.readNet("yolov4-tiny.weights","yolov4-tiny.cfg")
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(size=(320, 320), scale=1/255)
 
 # load class list
 classes = []
-with open("dnn_model/classes.txt", "r") as file_object:
+with open("classes.txt", "r") as file_object:
     for class_name in file_object.readlines():
         class_name = class_name.strip()
         classes.append(class_name)
@@ -48,7 +49,7 @@ desc_label.pack()
 
 # create background image
 bg_image = Image.open("download2.jpg")
-bg_image = bg_image.resize((800, 600), Image.ANTIALIAS)
+bg_image = bg_image.resize((800, 600), Image.LANCZOS)
 bg_image_tk = ImageTk.PhotoImage(bg_image)
 
 # add background label
@@ -62,6 +63,9 @@ title_label.pack(side="top", fill="x")
 # add description label
 desc_label = tk.Label(window, text="This is a simple object detector using OpenCV and\n YOLOv4-tiny model. The program allows you to detect objects\n in real-time video from your camera using a pre-trained model.\n Simply click on the buttons to toggle the detection of specific objects.", font=("Helvetica", 14), padx=20, pady=20)
 desc_label.pack()
+
+# text to speech
+engine = pyttsx3.init()
 
 # add start button
 def start_detection():
@@ -96,6 +100,9 @@ def start_detection():
                 cv2.rectangle(frame, (x,y), (x+w, y+h), color, 3)
                 # add text displaying the coordinates of the top-left corner of the bounding box
                 cv2.putText(frame, f"({x}, {y})", (x, y - 40), cv2.FONT_HERSHEY_PLAIN, 2, color, 2)
+                # Speak aloud the detected object
+                engine.say(f"I see a {class_name}")
+                engine.runAndWait()
         # display buttons
         button.display_buttons(frame)
         cv2.imshow("Object Detector", frame)
