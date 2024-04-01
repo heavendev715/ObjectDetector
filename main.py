@@ -15,7 +15,7 @@ button.add_button("spoon", 20, 340)
 colors = button.colors
 
 # opencv DNN
-net = cv2.dnn.readNet("yolov4-tiny.weights","yolov4-tiny.cfg")
+net = cv2.dnn.readNet("yolov8-ultralytics.weights","yolov8-ultralytics.cfg")
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(size=(320, 320), scale=1/255)
 
@@ -61,7 +61,7 @@ title_label = tk.Label(window, text="Object Detector", font=("Helvetica", 24, "b
 title_label.pack(side="top", fill="x")
 
 # add description label
-desc_label = tk.Label(window, text="This is a simple object detector using OpenCV and\n YOLOv4-tiny model. The program allows you to detect objects\n in real-time video from your camera using a pre-trained model.\n Simply click on the buttons to toggle the detection of specific objects.", font=("Helvetica", 14), padx=20, pady=20)
+desc_label = tk.Label(window, text="This is a simple object detector using OpenCV and\n YOLOv8-ultralytics model. The program allows you to detect objects\n in real-time video from your camera using a pre-trained model.\n Simply click on the buttons to toggle the detection of specific objects.", font=("Helvetica", 14), padx=20, pady=20)
 desc_label.pack()
 
 # text to speech

@@ -1,0 +1,6 @@
+path: D:\TEC\Sem-6\Mini Project
+train: D:\TEC\Sem-6\Mini Project\train
+val: D:\TEC\Sem-6\Mini Project\valid
+
+names:
+  0: bottle

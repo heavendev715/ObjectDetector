@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['bottle']
+
+roboflow:
+  workspace: yolo-learning-kiprr
+  project: bottle-detector-scy7l
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolo-learning-kiprr/bottle-detector-scy7l/dataset/3
