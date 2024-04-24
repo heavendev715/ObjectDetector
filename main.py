@@ -81,7 +81,6 @@ def start_detection():
     cv2.namedWindow("Object Detector", cv2.WINDOW_NORMAL)
     cv2.setWindowProperty("Object Detector", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     cv2.setMouseCallback("Object Detector", click_button)
-
     while True:
         # getting frames
         ret, frame = cap.read()
@@ -102,7 +101,7 @@ def start_detection():
                 # add text displaying the coordinates of the top-left corner of the bounding box
                 cv2.putText(frame, f"({x}, {y})", (x, y - 40), cv2.FONT_HERSHEY_PLAIN, 2, color, 2)
                 # Speak aloud the detected object
-                engine.say(f"I see a {class_name}")
+                engine.say(f"There is {class_name}")
                 engine.runAndWait()
         # display buttons
         button.display_buttons(frame)
