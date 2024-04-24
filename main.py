@@ -4,6 +4,7 @@ import cv2
 from gui_buttons import Buttons
 from PIL import ImageTk, Image
 import pyttsx3
+import math
 
 # Initialize buttons
 button = Buttons()
@@ -19,7 +20,7 @@ net = cv2.dnn.readNet("yolov8-ultralytics.weights","yolov8-ultralytics.cfg")
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(size=(320, 320), scale=1/255)
 
-# load class list
+# load class list3
 classes = []
 with open("classes.txt", "r") as file_object:
     for class_name in file_object.readlines():
